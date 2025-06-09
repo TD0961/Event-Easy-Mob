@@ -1,3 +1,13 @@
+# Expo specific
+.expo/
+.expo-shared/
+
+# Metro bundler cache
+metro-cache/
+
+# Expo web build output
+web-build/
+
 # Node modules (common for both front-end and back-end)
 node_modules/
 frontend/node_modules/
