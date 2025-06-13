@@ -99,8 +99,7 @@ return (
         {/* Navbar should NOT scroll */}
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         {/* Scrollable content */}
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            {/* Hero Section */}
+        <ScrollView contentContainerStyle={[styles.scrollContent, { flexGrow: 1 }]}>            {/* Hero Section */}
             <View style={[styles.heroSection, darkMode && styles.heroSectionDark]}>
                 <Image source={images[bgImage]} style={styles.heroImage} />
                 <View style={styles.overlay} />
@@ -166,12 +165,12 @@ return (
                         <Image source={event.image} style={styles.eventImage} />
                         <View style={styles.eventContent}>
                             <View style={styles.eventRow}>
-                                <Feather name="calendar" size={16} color={darkMode ? "#fbbf24" : "#ea580c"} style={{ marginRight: 6 }} />
+                                <Feather name="calendar" size={16} color={"#ea580c"} style={{ marginRight: 6 }} />
                                 <Text style={[styles.eventDate, darkMode && styles.eventDateDark]}>{event.date}</Text>
                             </View>
                             <Text style={[styles.eventTitle, darkMode && styles.eventTitleDark]}>{event.title}</Text>
                             <View style={styles.eventRow}>
-                                <Feather name="map-pin" size={16} color={darkMode ? "#fbbf24" : "#ea580c"} style={{ marginRight: 6 }} />
+                                <Feather name="map-pin" size={16} color={ "#ea580c"} style={{ marginRight: 6 }} />
                                 <Text style={[styles.eventLocation, darkMode && styles.eventLocationDark]}>{event.location}</Text>
                             </View>
                             <Text style={[styles.eventPrice, darkMode && styles.eventPriceDark]}>From ${event.price}</Text>
@@ -196,24 +195,32 @@ return (
             </View>
 
             {/* CTA Section */}
-            <View style={[styles.ctaSection, darkMode && styles.ctaSectionDark]}>
-                <Text style={[styles.ctaTitle, darkMode && styles.ctaTitleDark]}>Ready to Experience the Difference?</Text>
-                <Text style={[styles.ctaSubtitle, darkMode && styles.ctaSubtitleDark]}>
-                    Join thousands of event organizers and attendees using Event Easy
-                </Text>
-                <TouchableOpacity style={[styles.ctaBtn, darkMode && styles.ctaBtnDark]}>
-                    <Text style={[styles.ctaBtnText, darkMode && styles.ctaBtnTextDark]}>Get Started Today</Text>
-                </TouchableOpacity>
+            <View style={[styles.sectionWrapper, darkMode && { backgroundColor: '#1f2937' }]}>            <View style={[styles.ctaSection]}>
+              <Text style={[styles.ctaTitle]}>Ready to Experience the Difference?</Text>
+              <Text style={[styles.ctaSubtitle]}>
+                Join thousands of event organizers and attendees using Event Easy
+              </Text>
+              <TouchableOpacity style={[styles.ctaBtn]}>
+                <Text style={[styles.ctaBtnText]}>Get Started Today</Text>
+              </TouchableOpacity>
             </View>
-
-            {/* Footer */}
             <Footer darkMode={darkMode} />
+          </View>
         </ScrollView>
-    </View>
+      </View>
 );
 }
 
 const styles = StyleSheet.create({
+  scrollContent: {
+    flexGrow: 1,
+    padding: 0,
+    margin: 0,
+  },
+  sectionWrapper: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff'
@@ -274,14 +281,14 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   findEventsBtnDark: {
-    backgroundColor: '#374151'
+    backgroundColor: '#fff'
   },
   findEventsText: {
     color: '#ea580c',
     fontWeight: 'bold'
   },
   findEventsTextDark: {
-    color: '#fff' 
+    color: '#ea580c' 
   },
   organizeBtn: {
     backgroundColor: '#ea580c',
@@ -290,14 +297,14 @@ const styles = StyleSheet.create({
     borderRadius: 24
   },
   organizeBtnDark: {
-    backgroundColor: '#fbbf24'
+    backgroundColor: '#ea580c'
   },
   organizeText: {
     color: '#fff',
     fontWeight: 'bold'
   },
   organizeTextDark: {
-    color: '#1f2937'
+    color: '#fff'
   },
   sectionTitle: {
     fontSize: 22,
@@ -305,10 +312,10 @@ const styles = StyleSheet.create({
     marginTop: 32,
     marginBottom: 16,
     textAlign: 'center',
-    color: '#ea580c'
+    color: '#374151'
   },
   sectionTitleDark: {
-    color: '#fbbf24'
+    color: '#fff'
   },
   featuresGrid: {
     flexDirection: 'row',
@@ -333,7 +340,7 @@ const styles = StyleSheet.create({
     color: '#ea580c'
   },
   featureTitleDark: {
-    color: '#fbbf24'
+    color: '#ea580c'
   },
   featureDesc: {
     color: '#374151',
@@ -370,7 +377,7 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   stepCircleDark: {
-    backgroundColor: '#fbbf24'
+    backgroundColor: '#ea580c'
   },
   stepNum: {
     color: '#fff',
@@ -388,7 +395,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   stepTitleDark: {
-    color: '#fbbf24'
+    color: '#fff'
   },
   stepDesc: {
     color: '#374151',
@@ -433,7 +440,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   eventDateDark: {
-    color: '#fbbf24'
+    color: '#ea580c'
   },
   eventTitle: {
     fontSize: 18,
@@ -442,7 +449,7 @@ const styles = StyleSheet.create({
     color: '#23272f'
   },
   eventTitleDark: {
-    color: '#fbbf24'
+    color: '#d1d5db'
   },
   eventLocation: {
     color: '#6b7280'
@@ -465,7 +472,7 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   eventBtnDark: {
-    backgroundColor: '#fbbf24'
+    backgroundColor: '#ea580c'
   },
   eventBtnText: {
     color: '#fff',
@@ -504,9 +511,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ea580c'
   },
-  testimonialNameDark: {
-    color: '#fbbf24'
-  },
   testimonialRole: {
     color: '#6b7280',
     fontSize: 12
@@ -519,11 +523,7 @@ const styles = StyleSheet.create({
     padding: 32,
     alignItems: 'center',
     marginTop: 32,
-    borderRadius: 16,
-    marginHorizontal: 16
-  },
-  ctaSectionDark: {
-    backgroundColor: '#ea580c'
+    marginBottom: 0
   },
   ctaTitle: {
     color: '#fff',
@@ -532,17 +532,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center'
   },
-  ctaTitleDark: {
-    color: '#1f2937'
-  },
   ctaSubtitle: {
     color: '#fff7ed',
     fontSize: 16,
     marginBottom: 16,
     textAlign: 'center'
-  },
-  ctaSubtitleDark: {
-    color: '#1f2937'
   },
   ctaBtn: {
     backgroundColor: '#fff',
@@ -550,13 +544,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 24
   },
-  ctaBtnDark: {
-    backgroundColor: '#1f2937'
-  },
   ctaBtnText: {
     fontWeight: 'bold'
   },
-  ctaBtnTextDark: {
-    color: '#ea580c'
-  }
 });
